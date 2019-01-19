@@ -1,0 +1,10 @@
+title Tehtävä 0.5
+
+selain->palvelin: HTTP GET /spa
+palvelin-->selain: text/html /spa
+selain->palvelin: HTTP GET main.css
+palvelin-->selain: text/css main.css
+selain->palvelin: HTTP GET spa.js
+palvelin-->selain: application/javascript spa.js
+selain->palvelin: HTTP GET /data.json
+palvelin-->selain: application/json /data.json

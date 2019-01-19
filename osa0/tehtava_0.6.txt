@@ -1,0 +1,5 @@
+title Tehtävä 0.6
+
+selain->palvelin: HTTP POST /new_note_spa
+palvelin-->selain: Status: 201 created (selain pysyy samalla sivulla)
+
