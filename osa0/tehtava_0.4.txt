@@ -1,0 +1,12 @@
+title Tehtävä 0.4
+
+selain->palvelin: HTTP POST /new_note
+palvelin-->selain: REDIRECT /notes
+selain->palvelin: HTTP GET /notes
+palvelin-->selain: text/html /notes
+selain->palvelin: HTTP GET main.css
+palvelin-->selain: text/css main.css
+selain->palvelin: HTTP GET main.js
+palvelin-->selain: application/javascript main.js
+selain->palvelin: HTTP GET /data.json
+palvelin-->selain: application/json /data.json
