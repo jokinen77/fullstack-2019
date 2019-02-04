@@ -1,7 +1,7 @@
 import React from 'react'
 import PersonDataRow from './PersonDataRow'
 
-const PersonsDataTable = ({ persons, nameFilter, handleNameFiltering}) => {
+const PersonsDataTable = ({ persons, nameFilter, handleNameFiltering, deletePerson}) => {
   return (
     <>
     <h2>Numerot</h2>
@@ -9,7 +9,7 @@ const PersonsDataTable = ({ persons, nameFilter, handleNameFiltering}) => {
     <table>
       <tbody>
         {persons.filter(p => p.name.toLowerCase().includes(nameFilter.toLowerCase())).map(p =>
-          <PersonDataRow key={p.name} person={p} />
+          <PersonDataRow key={p.name} person={p} deletePerson={deletePerson} />
         )}
       </tbody>
     </table>
