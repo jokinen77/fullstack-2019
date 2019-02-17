@@ -40,6 +40,13 @@ describe('blogs api', () => {
       const response = await api.get('/api/blogs')
       expect(response.body[0].title).toBe(testBlogs[0].title)
     })
+
+    test('blogs has id fields', async () => {
+      const response = await api.get('/api/blogs')
+      for (let blog of response.body) {
+        expect(blog.id).toBeDefined()
+      }
+    })
   })
 
   describe("POST '/'", () => {
@@ -83,7 +90,7 @@ describe('blogs api', () => {
       const response = await api
         .get('/api/blogs/5a422b891b54a676234d17fa')
         .expect(200)
-      
+
       const blog = response.body
       expect(blog.title).toBe("First class tests")
     })
