@@ -1,17 +1,23 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
+import  { useField } from '../hooks/index.js'
 
 const LoginForm = ({ handleLogin }) => {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    //const [username, setUsername] = useState('')
+    //const [password, setPassword] = useState('')
+
+    const username = useField('text')
+    const password = useField('password')
 
     const handleLoginSubmit = async (event) => {
         event.preventDefault()
+        handleLogin({
+            username: username.value,
+            password: password.value
+        })
 
-        handleLogin({ username, password })
-
-        setUsername('')
-        setPassword('')
+        username.reset
+        password.reset
     }
 
     return (
@@ -19,21 +25,11 @@ const LoginForm = ({ handleLogin }) => {
             <form onSubmit={handleLoginSubmit}>
                 <div>
                     käyttäjätunnus
-                    <input
-                        type="text"
-                        value={username}
-                        name="Username"
-                        onChange={({ target }) => setUsername(target.value)}
-                    />
+                    <input {...username} />
                 </div>
                 <div>
                     salasana
-                    <input
-                        type="password"
-                        value={password}
-                        name="Password"
-                        onChange={({ target }) => setPassword(target.value)}
-                    />
+                    <input {...password} />
                 </div>
                 <button type="submit">kirjaudu</button>
             </form>

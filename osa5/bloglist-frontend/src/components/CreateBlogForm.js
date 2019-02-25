@@ -1,22 +1,27 @@
 import React, { useState } from 'react'
+import  { useField } from '../hooks/index.js'
 
 const CreateBlogFrom = ({ handleCreateBlog }) => {
-    const [title, setTitle] = useState('')
-    const [author, setAuthor] = useState('')
-    const [url, setUrl] = useState('')
     const [visible, setVisible] = useState(false)
+
+    const title = useField('text')
+    const author = useField('text')
+    const url = useField('text')
 
     const hideWhenVisible = { display: visible ? 'none' : '' }
     const showWhenVisible = { display: visible ? '' : 'none' }
 
     const handleCreateBlogSubmit = async (event) => {
         event.preventDefault()
+        handleCreateBlog({
+            title: title.value,
+            author: author.value,
+            url: url.value
+        })
 
-        handleCreateBlog({ title, author, url })
-
-        setTitle('')
-        setAuthor('')
-        setUrl('')
+        title.reset
+        author.reset
+        url.reset
     }
 
     return (
@@ -29,30 +34,15 @@ const CreateBlogFrom = ({ handleCreateBlog }) => {
                 <form onSubmit={handleCreateBlogSubmit}>
                     <div>
                         Title
-                        <input
-                            type="text"
-                            value={title}
-                            name="Title"
-                            onChange={({ target }) => setTitle(target.value)}
-                        />
+                        <input {...title } />
                     </div>
                     <div>
                         Author
-                        <input
-                            type="text"
-                            value={author}
-                            name="Author"
-                            onChange={({ target }) => setAuthor(target.value)}
-                        />
+                        <input {...author}/>
                     </div>
                     <div>
                         URL
-                        <input
-                            type="text"
-                            value={url}
-                            name="URL"
-                            onChange={({ target }) => setUrl(target.value)}
-                        />
+                        <input {...url}/>
                     </div>
                     <button type="submit">Create</button>
                 </form>
