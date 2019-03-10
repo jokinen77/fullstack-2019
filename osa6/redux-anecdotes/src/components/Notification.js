@@ -1,14 +1,27 @@
 import React from 'react'
 
-const Notification = () => {
+const Notification = (props) => {
+    const notification = props.store.getState().notification
+
     const style = {
-        border: 'solid',
+        color: 'green',
+        background: 'lightgrey',
+        fontSize: 20,
+        borderStyle: 'solid',
+        borderRadius: 5,
         padding: 10,
-        borderWidth: 1
+        marginBottom: 10
     }
+
+    if (!notification) {
+        return (
+            <></>
+        )
+    }
+
     return (
         <div style={style}>
-      render here notification...
+            {notification}
         </div>
     )
 }
